@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rider Stats - MotoGP Management Game</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file (add later) -->
+</head>
+<body>
+    <header>
+        <h1>MotoGP Management Game</h1>
+    </header>
+
+    <main>
+        <section id="rider-selection">
+            <h2>Select Rider</h2>
+            <label for="rider-name">Rider:</label>
+            <select id="rider-name" name="rider-name">
+                <option value="rider1">Rider 1</option>
+                <option value="rider2">Rider 2</option>
+                <option value="rider3">Rider 3</option>
+                <!-- Add more riders as needed -->
+            </select>
+            <button type="button">View Stats</button>
+        </section>
+
+        <section id="rider-statistics">
+            <h2>Rider Statistics</h2>
+            <p><strong>Wins:</strong> [Number of Wins]</p>
+            <p><strong>Podium Finishes:</strong> [Number of Podiums]</p>
+            <p><strong>Best Lap Time:</strong> [Best Lap Time]</p>
+            <p><strong>Average Finish Position:</strong> [Avg Position]</p>
+            <p><strong>Races Attended:</strong> [Number of Races]</p>
+            <!-- Add more stats as needed -->
+        </section>
+
+        <section id="stat-history">
+            <h2>Stat History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Race</th>
+                        <th>Position Finished</th>
+                        <th>Lap Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>[Race 1]</td>
+                        <td>[Position]</td>
+                        <td>[Lap Time]</td>
+                    </tr>
+                    <!-- Repeat this block for each race -->
+                </tbody>
+            </table>
+        </section>
+
+        <section id="quick-links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="fan_engagement.html">Fan Engagement</a></li>
+                <li><a href="help.html">Help</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 MotoGP Management Game. All rights reserved.</p>
+    </footer>
+</body>
+</html>

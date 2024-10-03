@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Management - MotoGP Management Game</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file (add later) -->
+</head>
+<body>
+    <header>
+        <h1>MotoGP Management Game</h1>
+    </header>
+    
+    <main>
+        <section id="team-overview">
+            <h2>Your Team Overview</h2>
+            <p>Team Name: [Your Team Name]</p> <!-- Placeholder for team name -->
+            <h3>Rider Lineup</h3>
+            <ul>
+                <li>Rider 1: [Rider Name] - Contract Status: [Status]</li>
+                <li>Rider 2: [Rider Name] - Contract Status: [Status]</li>
+                <li>Rider 3: [Rider Name] - Contract Status: [Status]</li>
+                <!-- Add more riders as needed -->
+            </ul>
+        </section>
+        
+        <section id="rider-management">
+            <h2>Manage Riders</h2>
+            <form action="add_rider.html" method="get"> <!-- Action can be changed later -->
+                <label for="new-rider-name">Add New Rider:</label>
+                <input type="text" id="new-rider-name" name="new-rider-name" required>
+                <button type="submit">Add Rider</button>
+            </form>
+            <h3>Existing Riders</h3>
+            <ul>
+                <li>Rider 1: <a href="edit_rider.html">Edit</a> | <a href="release_rider.html">Release</a></li>
+                <li>Rider 2: <a href="edit_rider.html">Edit</a> | <a href="release_rider.html">Release</a></li>
+                <li>Rider 3: <a href="edit_rider.html">Edit</a> | <a href="release_rider.html">Release</a></li>
+                <!-- Add more riders as needed -->
+            </ul>
+        </section>
+
+        <section id="contract-management">
+            <h2>Contract Management</h2>
+            <h3>Active Contracts</h3>
+            <ul>
+                <li>Rider 1: Contract Expires: [Date] | <a href="negotiate_contract.html">Negotiate</a></li>
+                <li>Rider 2: Contract Expires: [Date] | <a href="negotiate_contract.html">Negotiate</a></li>
+                <li>Rider 3: Contract Expires: [Date] | <a href="negotiate_contract.html">Negotiate</a></li>
+                <!-- Add more contracts as needed -->
+            </ul>
+        </section>
+
+        <section id="quick-links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="bike_management.html">Manage Bikes</a></li>
+                <li><a href="financial_management.html">Financial Overview</a></li>
+                <li><a href="race_schedule.html">Race Schedule</a></li>
+            </ul>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 MotoGP Management Game. All rights reserved.</p>
+    </footer>
+</body>
+</html>

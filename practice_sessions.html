@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Sessions - MotoGP Management Game</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file (add later) -->
+</head>
+<body>
+    <header>
+        <h1>MotoGP Management Game</h1>
+    </header>
+
+    <main>
+        <section id="practice-overview">
+            <h2>Upcoming Practice Session</h2>
+            <p>Track: [Track Name]</p>
+            <p>Session Duration: [Duration]</p>
+        </section>
+
+        <section id="setup-testing">
+            <h2>Setup Testing</h2>
+
+            <!-- Repeat this block for each rider -->
+            <div class="rider-setup">
+                <h3>[Rider Name]</h3>
+
+                <label for="suspension">Suspension:</label>
+                <select id="suspension" name="suspension">
+                    <option value="soft">Soft</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select><br><br>
+
+                <label for="tire-choice">Tire Choice:</label>
+                <select id="tire-choice" name="tire-choice">
+                    <option value="soft">Soft</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select><br><br>
+
+                <label for="gear-ratio">Gear Ratio:</label>
+                <select id="gear-ratio" name="gear-ratio">
+                    <option value="short">Short</option>
+                    <option value="balanced">Balanced</option>
+                    <option value="long">Long</option>
+                </select><br><br>
+            </div>
+            <!-- Add more rider setup blocks as needed -->
+        </section>
+
+        <section id="session-results">
+            <h2>Practice Session Results</h2>
+            <p>[Rider Name] Lap Time: [Lap Time]</p>
+            <p>[Rider Name] Performance Feedback: [Feedback]</p>
+            <!-- Add more results for each rider -->
+        </section>
+
+        <section id="save-setup">
+            <button type="submit">Save Setup</button>
+        </section>
+
+        <section id="quick-links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="race_strategy.html">Race Strategy</a></li>
+                <li><a href="scouting.html">Scouting</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 MotoGP Management Game. All rights reserved.</p>
+    </footer>
+</body>
+</html>

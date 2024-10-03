@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoGP Management Dashboard</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file (add later) -->
+    <script>
+        // Example bike data (replace with actual bike data retrieval)
+        const bike1 = {
+            name: "Ducati Desmosedici",
+            speed: 320,
+            handling: 8,
+            reliability: 7,
+            rating: currentBike.rating
+        };
+
+        const bike2 = {
+            name: "Yamaha YZR-M1",
+            speed: 315,
+            handling: 9,
+            reliability: 8,
+            rating: "8.5/10"
+        };
+
+        // Function to display bike conditions on the dashboard
+        function displayBikeConditions() {
+            document.getElementById('bike1-name').innerText = bike1.name;
+            document.getElementById('bike1-speed').innerText = bike1.speed;
+            document.getElementById('bike1-handling').innerText = bike1.handling;
+            document.getElementById('bike1-reliability').innerText = bike1.reliability;
+            document.getElementById('bike1-rating').innerText = bike1.rating;
+
+            document.getElementById('bike2-name').innerText = bike2.name;
+            document.getElementById('bike2-speed').innerText = bike2.speed;
+            document.getElementById('bike2-handling').innerText = bike2.handling;
+            document.getElementById('bike2-reliability').innerText = bike2.reliability;
+            document.getElementById('bike2-rating').innerText = bike2.rating;
+        }
+
+        // Existing function to display current bike model
+        function displayCurrentBike() {
+            // Assuming the current bike logic is defined elsewhere
+            // Update this with your existing logic to display the current bike
+        }
+
+        // Call this function when the dashboard loads
+        window.onload = function() {
+            displayCurrentBike(); // Existing function call
+            displayBikeConditions(); // New function call for bike conditions
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>MotoGP Management Dashboard</h1>
+    </header>
+    <main>
+        <section id="team-info">
+            <h2>Your Team</h2>
+            <p><strong>Team Name:</strong> <span id="team-name">Your Team</span></p>
+            <p><strong>League Position:</strong> <span id="league-position">1</span></p>
+        </section>
+
+        <section id="bike-condition-section">
+            <h2>Bike Condition</h2>
+            <div id="bike-1-condition">
+                <h3>Bike 1: <span id="bike1-name"></span></h3>
+                <p><strong>Speed:</strong> <span id="bike1-speed"></span> km/h</p>
+                <p><strong>Handling:</strong> <span id="bike1-handling"></span>/10</p>
+                <p><strong>Reliability:</strong> <span id="bike1-reliability"></span>/10</p>
+                <p><strong>Rating:</strong> <span id="bike1-rating"></span></p>
+            </div>
+            
+            <div id="bike-2-condition">
+                <h3>Bike 2: <span id="bike2-name"></span></h3>
+                <p><strong>Speed:</strong> <span id="bike2-speed"></span> km/h</p>
+                <p><strong>Handling:</strong> <span id="bike2-handling"></span>/10</p>
+                <p><strong>Reliability:</strong> <span id="bike2-reliability"></span>/10</p>
+                <p><strong>Rating:</strong> <span id="bike2-rating"></span></p>
+            </div>
+        </section>
+
+        <section id="team-leaders">
+            <h2>Team Leaders</h2>
+            <p>Details about team leaders...</p> <!-- Replace with actual data -->
+        </section>
+
+        <section id="league-leaders">
+            <h2>League Leaders</h2>
+            <p>Details about league leaders...</p> <!-- Replace with actual data -->
+        </section>
+
+        <section id="team-stats">
+            <h2>Team Stats</h2>
+            <p>Details about team stats...</p> <!-- Replace with actual data -->
+        </section>
+
+        <section id="finances">
+            <h2>Finances</h2>
+            <p><strong>Spendable Money:</strong> $<span id="spendable-money">500,000</span></p>
+        </section>
+        
+        <!-- Add sidebar or navigation if necessary -->
+    </main>
+    <footer>
+        <p>&copy; 2024 MotoGP Management Game</p>
+    </footer>
+</body>
+</html>

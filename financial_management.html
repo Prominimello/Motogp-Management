@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Management - MotoGP Management Game</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file (add later) -->
+</head>
+<body>
+    <header>
+        <h1>MotoGP Management Game</h1>
+    </header>
+    
+    <main>
+        <section id="financial-overview">
+            <h2>Financial Overview</h2>
+            <p>Current Budget: $[Current Budget]</p>
+            <p>Total Revenue: $[Total Revenue]</p>
+            <p>Total Expenses: $[Total Expenses]</p>
+            <p>Net Profit: $[Net Profit]</p>
+        </section>
+
+        <section id="income-expense-tracking">
+            <h2>Income and Expense Tracking</h2>
+            <h3>Sponsorship Income</h3>
+            <ul>
+                <li>Sponsor 1: $[Amount] - Renewal Date: [Date]</li>
+                <li>Sponsor 2: $[Amount] - Renewal Date: [Date]</li>
+                <!-- Add more sponsors as needed -->
+            </ul>
+
+            <h3>Race Earnings</h3>
+            <ul>
+                <li>Race 1: $[Amount]</li>
+                <li>Race 2: $[Amount]</li>
+                <!-- Add more race earnings as needed -->
+            </ul>
+
+            <h3>Expenses</h3>
+            <ul>
+                <li>Rider Salaries: $[Amount]</li>
+                <li>Bike Maintenance: $[Amount]</li>
+                <li>Team Operations: $[Amount]</li>
+                <!-- Add more expenses as needed -->
+            </ul>
+        </section>
+
+        <section id="budget-management">
+            <h2>Budget Management</h2>
+            <form action="set_budget.html" method="get"> <!-- Action can be changed later -->
+                <label for="rider-budget">Set Rider Budget:</label>
+                <input type="number" id="rider-budget" name="rider-budget" required>
+                <button type="submit">Update Budget</button>
+            </form>
+
+            <form action="set_budget.html" method="get"> <!-- Action can be changed later -->
+                <label for="bike-budget">Set Bike Budget:</label>
+                <input type="number" id="bike-budget" name="bike-budget" required>
+                <button type="submit">Update Budget</button>
+            </form>
+        </section>
+
+        <section id="quick-links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="team_management.html">Manage Team</a></li>
+                <li><a href="bike_management.html">Manage Bikes</a></li>
+                <li><a href="race_schedule.html">Race Schedule</a></li>
+            </ul>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 MotoGP Management Game. All rights reserved.</p>
+    </footer>
+</body>
+</html>

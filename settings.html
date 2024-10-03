@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - MotoGP Management Game</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file (add later) -->
+</head>
+<body>
+    <header>
+        <h1>MotoGP Management Game</h1>
+    </header>
+
+    <main>
+        <section id="general-settings">
+            <h2>General Settings</h2>
+            <label for="sound">Sound:</label>
+            <select id="sound" name="sound">
+                <option value="on">On</option>
+                <option value="off">Off</option>
+            </select><br><br>
+
+            <label for="notifications">Notifications:</label>
+            <select id="notifications" name="notifications">
+                <option value="on">On</option>
+                <option value="off">Off</option>
+            </select><br><br>
+
+            <label for="language">Language:</label>
+            <select id="language" name="language">
+                <option value="english">English</option>
+                <option value="spanish">Spanish</option>
+                <option value="french">French</option>
+                <option value="german">German</option>
+            </select><br><br>
+        </section>
+
+        <section id="team-management-settings">
+            <h2>Team Management Settings</h2>
+            <label for="team-name">Team Name:</label>
+            <input type="text" id="team-name" name="team-name" placeholder="Enter your team name"><br><br>
+
+            <label for="team-logo">Team Logo:</label>
+            <input type="file" id="team-logo" name="team-logo"><br><br>
+        </section>
+
+        <section id="save-settings">
+            <button type="submit">Save Settings</button>
+        </section>
+
+        <section id="quick-links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="scouting.html">Scouting</a></li>
+                <li><a href="race_strategy.html">Race Strategy</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 MotoGP Management Game. All rights reserved.</p>
+    </footer>
+</body>
+</html>

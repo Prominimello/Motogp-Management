@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Customization - MotoGP Management Game</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file (add later) -->
+</head>
+<body>
+    <header>
+        <h1>MotoGP Management Game</h1>
+    </header>
+
+    <main>
+        <section id="team-overview">
+            <h2>Team Overview</h2>
+            <p>Current Team Name: [Team Name]</p>
+            <p>Team Colors:</p>
+            <div>
+                <div style="width: 50px; height: 50px; background-color: [Color 1]; display: inline-block;"></div>
+                <div style="width: 50px; height: 50px; background-color: [Color 2]; display: inline-block;"></div>
+                <div style="width: 50px; height: 50px; background-color: [Color 3]; display: inline-block;"></div>
+            </div>
+            <p>Team Logo:</p>
+            <img src="[Team Logo URL]" alt="Team Logo" width="150">
+        </section>
+
+        <section id="team-customization">
+            <h2>Customize Your Team</h2>
+
+            <form action="save_team_customization.html" method="POST">
+                <label for="team-name">Team Name:</label>
+                <input type="text" id="team-name" name="team-name" value="[Current Team Name]"><br><br>
+
+                <label for="color1">Primary Color:</label>
+                <input type="color" id="color1" name="color1" value="#000000"><br><br>
+
+                <label for="color2">Secondary Color:</label>
+                <input type="color" id="color2" name="color2" value="#FFFFFF"><br><br>
+
+                <label for="color3">Tertiary Color:</label>
+                <input type="color" id="color3" name="color3" value="#FF0000"><br><br>
+
+                <label for="team-logo">Upload Team Logo:</label>
+                <input type="file" id="team-logo" name="team-logo"><br><br>
+
+                <button type="submit">Save Customization</button>
+                <button type="reset">Reset</button>
+            </form>
+        </section>
+
+        <section id="quick-links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="race_strategy.html">Race Strategy</a></li>
+                <li><a href="financial_management.html">Financial Overview</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 MotoGP Management Game. All rights reserved.</p>
+    </footer>
+</body>
+</html>

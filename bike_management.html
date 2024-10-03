@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Management - MotoGP Management Game</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file (add later) -->
+    <script>
+        // List of available bikes with their prices and ratings
+        const bikeOptions = [
+            { name: "Ducati Desmosedici", price: 150000, rating: "9/10", speed: 320, handling: 8, reliability: 7 },
+            { name: "Yamaha YZR-M1", price: 145000, rating: "8.5/10", speed: 315, handling: 9, reliability: 8 },
+            { name: "Honda RC213V", price: 155000, rating: "9/10", speed: 318, handling: 8, reliability: 9 },
+            { name: "Suzuki GSX-RR", price: 140000, rating: "8/10", speed: 314, handling: 9, reliability: 8 },
+            { name: "Aprilia RS-GP", price: 135000, rating: "7.5/10", speed: 316, handling: 8, reliability: 7 },
+            { name: "BMW M1000RR", price: 160000, rating: "9.5/10", speed: 322, handling: 9, reliability: 8 },
+            { name: "Kawasaki Ninja H2R", price: 170000, rating: "10/10", speed: 400, handling: 9, reliability: 6 }
+        ];
+
+        // Player's budget
+        let playerBudget = 200000; // Set an initial budget
+
+        // Set the worst starting bike model with a brand
+        let currentBike = { 
+            name: "Absolutely Horrible",
+            price: 1000,  // Set a low price for the starter bike
+            rating: "1/10", 
+            speed: 50,    // Set the lowest speed possible
+            handling: 1,  // Set the lowest handling rating
+            reliability: 1, // Set the lowest reliability rating
+            upgradeCost: 5000, // Cost for upgrading the bike
+            upgrades: 0 // Track the number of upgrades
+        };
+
+        // Function to display current bike model details
+        function displayCurrentBike() {
+            const currentBikeSection = document.getElementById('current-bike-model');
+            currentBikeSection.innerHTML = `
+                <h2>Current Bike Model</h2>
+                <p><strong>Model:</strong> ${currentBike.name}</p>
+                <p><strong>Speed:</strong> ${currentBike.speed} km/h</p>
+                <p><strong>Handling:</strong> ${currentBike.handling}/10</p>
+                <p><strong>Reliability:</strong> ${currentBike.reliability}/10</p>
+                <p><strong>Upgrade Cost:</strong> $${currentBike.upgradeCost}</p>
+            `;
+        }
+
+        // Function to upgrade the current bike
+        function upgradeCurrentBike() {
+            // Define max limits for speed, handling, and reliability
+            const maxSpeed = 350; // Max speed for top bikes
+            const maxHandling = 10; // Max handling
+            const maxReliability = 10; // Max reliability
+
+            // Check if the bike has reached the maximum upgrade level
+            if (currentBike.upgrades >= 10) {
+                alert("This bike is already at maximum upgrade level.");
+                return;
+            }
+
+            if (confirm(`Upgrade ${currentBike.name} for $${currentBike.upgradeCost}?`)) {
+                // Increase the upgrades count
+                currentBike.upgrades++;
+
+                // Upgrade speed, handling, and reliability based on the current upgrades
+                currentBike.speed = Math.min(currentBike.speed + (maxSpeed / 10), maxSpeed); // Increase speed
+                currentBike.handling = Math.min(currentBike.handling + 1, maxHandling); // Increase handling
+                currentBike.reliability = Math.min(currentBike.reliability + 1, maxReliability); // Increase reliability
+
+                // Increase the upgrade cost
+                currentBike.upgradeCost *= 1.4; // Multiply upgrade cost by 1.4
+                
+                // Cap the upgrade cost at $150,000
+                if (currentBike.upgradeCost > 150000) {
+                    currentBike.upgradeCost = 150000;
+                }
+
+                alert("Upgrade successful!");
+                displayCurrentBike(); // Update the displayed current bike details
+            }
+        }
+
+        // Function to display bike options for switching
+        function switchBikeModel() {
+            let bikeList = "Available Bikes:\n";
+            bikeOptions.forEach((bike, index) => {
+                // Calculate the price and stats for the switched bike
+                const switchedPrice = bike.price / 2;
+                
+                bikeList += `${index + 1}. ${bike.name} - Price: $${switchedPrice} - Rating: ${bike.rating}\n`;
+            });
+            const bikeChoice = prompt(bikeList + "\nEnter the number of the bike you want to switch to:");
+
+            if (bikeChoice && bikeChoice > 0 && bikeChoice <= bikeOptions.length) {
+                const selectedBike = bikeOptions[bikeChoice - 1];
+                // Update the current bike with half stats but allow max upgrades
+                currentBike = {
+                    name: selectedBike.name,
+                    price: selectedBike.price / 2,
+                    rating: selectedBike.rating,
+                    speed: selectedBike.speed / 2,
+                    handling: selectedBike.handling / 2,
+                    reliability: selectedBike.reliability / 2,
+                    upgradeCost: selectedBike.price / 10, // Set an initial upgrade cost for the new bike
+                    upgrades: 0 // Start upgrades from 0 to allow max upgrades
+                };
+                displayCurrentBike(); // Update the displayed current bike details
+                alert("Switched to " + selectedBike.name + " with a rating of " + selectedBike.rating + " at a price of $" + currentBike.price + ".");
+            } else {
+                alert("Invalid choice. Please try again.");
+            }
+        }
+
+        // Function to buy a new bike model
+        function buyNewBike() {
+            let bikeList = "Available Bikes:\n";
+            bikeOptions.forEach((bike, index) => {
+                bikeList += `${index + 1}. ${bike.name} - Price: $${bike.price} - Rating: ${bike.rating}\n`;
+            });
+            const bikeChoice = prompt(bikeList + "\nEnter the number of the bike you want to buy:");
+
+            if (bikeChoice && bikeChoice > 0 && bikeChoice <= bikeOptions.length) {
+                const selectedBike = bikeOptions[bikeChoice - 1];
+                
+                if (playerBudget >= selectedBike.price) {
+                    if (confirm(`Buy ${selectedBike.name} for $${selectedBike.price}?`)) {
+                        currentBike = {
+                            name: selectedBike.name,
+                            price: selectedBike.price,
+                            rating: selectedBike.rating,
+                            speed: selectedBike.speed,
+                            handling: selectedBike.handling,
+                            reliability: selectedBike.reliability,
+                            upgradeCost: selectedBike.price / 10, // Set an initial upgrade cost for the new bike
+                            upgrades: 0 // Start upgrades from 0 to allow max upgrades
+                        };
+                        playerBudget -= selectedBike.price; // Deduct the price from the player's budget
+                        displayCurrentBike(); // Update the displayed current bike details
+                        alert("Bought a new bike: " + selectedBike.name + " with Price: $" + selectedBike.price);
+                    }
+                } else {
+                    alert("Insufficient budget to buy this bike.");
+                }
+            } else {
+                alert("Invalid choice. Please try again.");
+            }
+        }
+
+        // Initialize by displaying the starting bike model
+        window.onload = function() {
+            displayCurrentBike();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>MotoGP Management Game</h1>
+    </header>
+    <main>
+        <section id="models">
+            <h2>Available Bikes for Purchase</h2>
+            <button onclick="buyNewBike()">Buy New Bike</button>
+            <button onclick="switchBikeModel()">Buy Used Bike</button>
+        </section>
+
+        <section id="current-bike-model"></section>
+        
+        <section id="upgrade-bike-section">
+            <h2>Upgrade Current Bike</h2>
+            <button onclick="upgradeCurrentBike()">Upgrade Bike</button>
+        </section>
+
+        <section id="budget-section">
+            <h2>Your Budget</h2>
+            <p>$<span id="budget-amount">${playerBudget}</span></p>
+        </section>
+
+        <!-- Navigation Shortcuts -->
+        <nav id="navigation-shortcuts">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="settings.html">League Setup</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="race_details.html">Standings</a></li>
+                <li><a href="financial_management.html">League Finances</a></li>
+                <li><a href="about.html">Game</a></li>
+            </ul>
+        </nav>
+    </main>
+    <footer>
+        <p>&copy; 2024 MotoGP Management Game</p>
+    </footer>
+</body>
+</html>

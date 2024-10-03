@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League Setup - MotoGP Management Game</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file (add later) -->
+    <script>
+        // Starting budget
+        let budget = 250000; // Adjusted starting budget
+        let selectedRidersCount = 0; // Track the number of selected riders
+        const selectedRiders = new Set(); // Track the indices of selected riders
+        let selectedStaff = null; // Track the selected staff index
+        let selectedSponsor = null; // Track the selected sponsor index
+
+        // Sample riders with their costs and stats
+        const riders = [
+            { name: "Rider A", salary: 10000, consistency: 4, adaptability: 3, bikeControl: 4 },
+            { name: "Rider B", salary: 30000, consistency: 5, adaptability: 4, bikeControl: 5 },
+            { name: "Rider C", salary: 50000, consistency: 5, adaptability: 5, bikeControl: 6 },
+            { name: "Rider D", salary: 70000, consistency: 6, adaptability: 5, bikeControl: 6 },
+            { name: "Rider E", salary: 90000, consistency: 6, adaptability: 6, bikeControl: 7 },
+            { name: "Rider F", salary: 110000, consistency: 7, adaptability: 6, bikeControl: 6 },
+            { name: "Rider G", salary: 130000, consistency: 6, adaptability: 7, bikeControl: 5 },
+            { name: "Rider H", salary: 140000, consistency: 7, adaptability: 5, bikeControl: 7 },
+            { name: "Rider I", salary: 150000, consistency: 7, adaptability: 7, bikeControl: 6 },
+            { name: "Rider J", salary: 120000, consistency: 5, adaptability: 6, bikeControl: 5 },
+        ];
+
+        // Sample staff with their costs and skills
+        const staffMembers = [
+            { name: "General Staff A", salary: 30000, skill: 1 },
+            { name: "General Staff B", salary: 45000, skill: 2 },
+            { name: "General Staff C", salary: 70000, skill: 3 },
+            { name: "General Staff D", salary: 90000, skill: 4 },
+            { name: "General Staff E", salary: 110000, skill: 5 },
+        ];
+
+        // Sample sponsors with their costs and recognition levels
+        const sponsors = [
+            { name: "Local Business", salary: 10000, recognition: "Low" },
+            { name: "Regional Company", salary: 25000, recognition: "Medium" },
+            { name: "National Brand", salary: 50000, recognition: "High" },
+            { name: "Global Corporation", salary: 100000, recognition: "Very High" },
+            { name: "Premium Sponsor", salary: 150000, recognition: "Elite" },
+        ];
+
+        // Function to update the budget display
+        function updateBudgetDisplay() {
+            document.getElementById('budget-display').innerText = `Current Budget: $${budget}`;
+        }
+
+        // Function to select or deselect a rider
+        function toggleRider(riderIndex) {
+            const selectedRider = riders[riderIndex];
+            const riderItem = document.getElementById(`rider-${riderIndex}`);
+
+            if (selectedRiders.has(riderIndex)) {
+                // Deselect the rider
+                selectedRiders.delete(riderIndex);
+                budget += selectedRider.salary; // Refund salary
+                selectedRidersCount--;
+                riderItem.querySelector('.checkmark').style.display = 'none'; // Hide checkmark
+                alert(`Deselected ${selectedRider.name}.`);
+            } else {
+                // Select the rider
+                if (selectedRidersCount < 2) {
+                    if (budget >= selectedRider.salary) {
+                        budget -= selectedRider.salary;
+                        selectedRiders.add(riderIndex);
+                        selectedRidersCount++;
+                        riderItem.querySelector('.checkmark').style.display = 'inline'; // Show checkmark
+                        alert(`Selected ${selectedRider.name} for $${selectedRider.salary}.`);
+                    } else {
+                        alert("Not enough budget to select this rider.");
+                    }
+                } else {
+                    alert("You can only select a maximum of 2 riders.");
+                }
+            }
+            updateBudgetDisplay();
+        }
+
+        // Function to select or deselect a staff member
+        function selectStaff(staffIndex) {
+            const selectedStaffMember = staffMembers[staffIndex];
+            const staffItem = document.getElementById(`staff-${staffIndex}`);
+
+            if (selectedStaff === staffIndex) {
+                // Deselect the staff member
+                selectedStaff = null;
+                budget += selectedStaffMember.salary; // Refund salary
+                staffItem.querySelector('.checkmark').style.display = 'none'; // Hide checkmark
+                alert(`Deselected ${selectedStaffMember.name}.`);
+            } else {
+                // Select the staff member
+                if (selectedStaff === null) {
+                    if (budget >= selectedStaffMember.salary) {
+                        budget -= selectedStaffMember.salary;
+                        selectedStaff = staffIndex;
+                        staffItem.querySelector('.checkmark').style.display = 'inline'; // Show checkmark
+                        alert(`Selected ${selectedStaffMember.name} for $${selectedStaffMember.salary}.`);
+                    } else {
+                        alert("Not enough budget to select this staff member.");
+                    }
+                } else {
+                    alert("You can only select one staff member.");
+                }
+            }
+            updateBudgetDisplay();
+        }
+
+        // Function to select or deselect a sponsor
+        function selectSponsor(sponsorIndex) {
+            const selectedSponsorData = sponsors[sponsorIndex];
+            const sponsorItem = document.getElementById(`sponsor-${sponsorIndex}`);
+
+            if (selectedSponsor === sponsorIndex) {
+                // Deselect the sponsor
+                selectedSponsor = null;
+                budget += selectedSponsorData.salary; // Refund salary
+                sponsorItem.querySelector('.checkmark').style.display = 'none'; // Hide checkmark
+                alert(`Deselected ${selectedSponsorData.name}.`);
+            } else {
+                // Select the sponsor
+                if (selectedSponsor === null) {
+                    if (budget >= selectedSponsorData.salary) {
+                        budget -= selectedSponsorData.salary;
+                        selectedSponsor = sponsorIndex;
+                        sponsorItem.querySelector('.checkmark').style.display = 'inline'; // Show checkmark
+                        alert(`Selected ${selectedSponsorData.name} for $${selectedSponsorData.salary}. Recognition: ${selectedSponsorData.recognition}`);
+                    } else {
+                        alert("Not enough budget to select this sponsor.");
+                    }
+                } else {
+                    alert("You can only select one sponsor.");
+                }
+            }
+            updateBudgetDisplay();
+        }
+
+        // Function to validate the selections and proceed
+        function validateAndProceed() {
+            const teamName = document.getElementById('team-name').value.trim();
+            const ridersSelected = selectedRiders.size === 2;
+            const staffSelected = selectedStaff !== null;
+            const sponsorSelected = selectedSponsor !== null;
+
+            if (!teamName) {
+                alert("Please enter a team name.");
+            } else if (!ridersSelected) {
+                alert("You must select 2 riders.");
+            } else if (!staffSelected) {
+                alert("You must select 1 staff member.");
+            } else if (!sponsorSelected) {
+                alert("You must select 1 sponsor.");
+            } else {
+                // If all validations pass, redirect to the next stage (replace 'next-stage.html' with your next page)
+                window.location.href = 'next-stage.html';
+            }
+        }
+
+        // Initialize the page
+        window.onload = function() {
+            updateBudgetDisplay();
+        };
+    </script>
+    <style>
+        .checkmark {
+            display: none;
+            color: green;
+            margin-left: 10px;
+        }
+        .rider-stats, .staff-skill, .sponsor-recognition {
+            font-size: 0.9em;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MotoGP Management Game - League Setup</h1>
+    </header>
+    <main>
+        <section id="team-name-section" required>
+            <h2>Team Setup</h2>
+            <label for="team-name">Team Name:</label>
+            <input type="text" id="team-name" placeholder="Enter your team name" required />
+            <label for="logo">Logo:</label>
+            <input type="text" id="logo" placeholder="Enter logo URL" />
+        </section>
+
+        <section id="riders-section" required>
+            <h2>Select Riders (Max 2)</h2>
+            <ul>
+                <li id="rider-0" onclick="toggleRider(0)">Rider A ($10,000)<span class="checkmark">✔️</span>
+                    <div class="rider-stats">Consistency: 4 | Adaptability: 3 | Bike Control: 4</div>
+                </li>
+                <li id="rider-1" onclick="toggleRider(1)">Rider B ($30,000)<span class="checkmark">✔️</span>
+                    <div class="rider-stats">Consistency: 5 | Adaptability: 4 | Bike Control: 5</div>
+                </li>
+                <li id="rider-2" onclick="toggleRider(2)">Rider C ($50,000)<span class="checkmark">✔️</span>
+                    <div class="rider-stats">Consistency: 5 | Adaptability: 5 | Bike Control: 6</div>
+                </li>
+                <li id="rider-3" onclick="toggleRider(3)">Rider D ($70,000)<span class="checkmark">✔️</span>
+                    <div class="rider-stats">Consistency: 6 | Adaptability: 5 | Bike Control: 6</div>
+                </li>
+                <li id="rider-4" onclick="toggleRider(4)">Rider E ($90,000)<span class="checkmark">✔️</span>
+                    <div class="rider-stats">Consistency: 6 | Adaptability: 6 | Bike Control: 7</div>
+                </li>
+                <li id="rider-5" onclick="toggleRider(5)">Rider F ($110,000)<span class="checkmark">✔️</span>
+                    <div class="rider-stats">Consistency: 7 | Adaptability: 6 | Bike Control: 6</div>
+                </li>
+                <li id="rider-6" onclick="toggleRider(6)">Rider G ($130,000)<span class="checkmark">✔️</span>
+                    <div class="rider-stats">Consistency: 6 | Adaptability: 7 | Bike Control: 5</div>
+                </li>
+                <li id="rider-7" onclick="toggleRider(7)">Rider H ($140,000)<span class="checkmark">✔️</span>
+                    <div class="rider-stats">Consistency: 7 | Adaptability: 5 | Bike Control: 7</div>
+                </li>
+                <li id="rider-8" onclick="toggleRider(8)">Rider I ($150,000)<span class="checkmark">✔️</span>
+                    <div class="rider-stats">Consistency: 7 | Adaptability: 7 | Bike Control: 6</div>
+                </li>
+                <li id="rider-9" onclick="toggleRider(9)">Rider J ($120,000)<span class="checkmark">✔️</span>
+                    <div class="rider-stats">Consistency: 5 | Adaptability: 6 | Bike Control: 5</div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="staff-section" required>
+            <h2>Select Staff (Max 1)</h2>
+            <ul>
+                <li id="staff-0" onclick="selectStaff(0)">General Staff A ($30,000)<span class="checkmark">✔️</span>
+                    <div class="staff-skill">Skill: 1</div>
+                </li>
+                <li id="staff-1" onclick="selectStaff(1)">General Staff B ($45,000)<span class="checkmark">✔️</span>
+                    <div class="staff-skill">Skill: 2</div>
+                </li>
+                <li id="staff-2" onclick="selectStaff(2)">General Staff C ($70,000)<span class="checkmark">✔️</span>
+                    <div class="staff-skill">Skill: 3</div>
+                </li>
+                <li id="staff-3" onclick="selectStaff(3)">General Staff D ($90,000)<span class="checkmark">✔️</span>
+                    <div class="staff-skill">Skill: 4</div>
+                </li>
+                <li id="staff-4" onclick="selectStaff(4)">General Staff E ($110,000)<span class="checkmark">✔️</span>
+                    <div class="staff-skill">Skill: 5</div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="sponsor-section" required>
+            <h2>Select Sponsor (Max 1)</h2>
+            <ul>
+                <li id="sponsor-0" onclick="selectSponsor(0)">Local Business ($10,000)<span class="checkmark">✔️</span>
+                    <div class="sponsor-recognition">Recognition: Low</div>
+                </li>
+                <li id="sponsor-1" onclick="selectSponsor(1)">Regional Company ($25,000)<span class="checkmark">✔️</span>
+                    <div class="sponsor-recognition">Recognition: Medium</div>
+                </li>
+                <li id="sponsor-2" onclick="selectSponsor(2)">National Brand ($50,000)<span class="checkmark">✔️</span>
+                    <div class="sponsor-recognition">Recognition: High</div>
+                </li>
+                <li id="sponsor-3" onclick="selectSponsor(3)">Global Corporation ($100,000)<span class="checkmark">✔️</span>
+                    <div class="sponsor-recognition">Recognition: Very High</div>
+                </li>
+                <li id="sponsor-4" onclick="selectSponsor(4)">Premium Sponsor ($150,000)<span class="checkmark">✔️</span>
+                    <div class="sponsor-recognition">Recognition: Elite</div>
+                </li>
+            </ul>
+        </section>
+
+        <footer>
+            <div id="budget-display"></div>
+            <button onclick="validateAndProceed()">Proceed to Next Stage</button>
+        </footer>
+    </main>
+</body>
+</html>

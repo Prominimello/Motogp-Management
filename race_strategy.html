@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Race Strategy - MotoGP Management Game</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file (add later) -->
+</head>
+<body>
+    <header>
+        <h1>MotoGP Management Game</h1>
+    </header>
+
+    <main>
+        <section id="race-overview">
+            <h2>Upcoming Race Overview</h2>
+            <p>Track: [Track Name]</p>
+            <p>Weather Forecast: [Weather Conditions]</p>
+            <p>Track Length: [Track Length]</p>
+            <p>Race Date: [Race Date]</p>
+        </section>
+
+        <section id="rider-strategy">
+            <h2>Rider Strategy</h2>
+
+            <!-- Repeat this section for each rider in the team -->
+            <div class="rider-strategy-block">
+                <h3>[Rider Name]</h3>
+
+                <label for="tire-type">Tire Type:</label>
+                <select id="tire-type" name="tire-type">
+                    <option value="soft">Soft</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select><br><br>
+
+                <label for="pit-stop">Pit Stop Strategy:</label>
+                <select id="pit-stop" name="pit-stop">
+                    <option value="early">Early</option>
+                    <option value="mid">Mid Race</option>
+                    <option value="late">Late</option>
+                </select><br><br>
+
+                <label for="riding-style">Riding Style:</label>
+                <select id="riding-style" name="riding-style">
+                    <option value="aggressive">Aggressive</option>
+                    <option value="balanced">Balanced</option>
+                    <option value="defensive">Defensive</option>
+                </select><br><br>
+            </div>
+            <!-- Add more rider blocks as needed -->
+        </section>
+
+        <section id="save-strategy">
+            <button type="submit">Save Strategy</button>
+        </section>
+
+        <section id="quick-links">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="practice_sessions.html">Practice Sessions</a></li>
+                <li><a href="scouting.html">Scouting</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 MotoGP Management Game. All rights reserved.</p>
+    </footer>
+</body>
+</html>
